@@ -141,3 +141,24 @@ def isDirValid(dirName):
         return True
     else:
         return False
+
+def duplicates(dirPath):
+    filePaths = getFiles(dirPath)
+    fileNames = getFileNames(dirPath)
+    fileSizes = getFileSizes(dirPath)
+    fileHashes = getFileHashes(dirPath)
+    sameHashFiles = getsameHash(fileHashes)
+
+    dupFiles = list()
+    num = 0
+    for entry in sameHashFiles:
+        dup = {
+            'id' : num,
+            'FileName' : fileNames[entry],
+            'FilePath' : filePaths[entry],
+            'FileSize' : fileSizes[entry]
+        }
+        dupFiles.append(dup)
+        num += 1
+
+    print(dupFiles)
