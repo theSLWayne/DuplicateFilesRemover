@@ -142,6 +142,19 @@ def isDirValid(dirName):
     else:
         return False
 
+def getReadableFileSizes(size_in_bytes):
+    SIZE_UNITS = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB']
+    index = 0
+    while size_in_bytes >= 1024:
+        size_in_bytes /= 1024
+        index += 1
+    float(size_in_bytes)
+    size_in_bytes = round(size_in_bytes, 3)
+    try:
+        return f'{size_in_bytes} {SIZE_UNITS[index]}'
+    except IndexError:
+        return 'File too large'
+
 def duplicates(dirPath):
     filePaths = getFiles(dirPath)
     fileNames = getFileNames(dirPath)
@@ -156,9 +169,9 @@ def duplicates(dirPath):
             'id' : num,
             'FileName' : fileNames[entry],
             'FilePath' : filePaths[entry],
-            'FileSize' : fileSizes[entry]
+            'FileSize' : getReadableFileSizes(fileSizes[entry])
         }
         dupFiles.append(dup)
         num += 1
 
-    print(dupFiles)
+    return dupFiles
