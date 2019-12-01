@@ -3,14 +3,24 @@
 <head>
 	<title>Duplicate Files Remover</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+		<ul class=flashes>
+		{% for category, message in messages %}
+		<li class="{{ category }}">{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	{% endwith %}
 
 
 </head>
 <body>
 	<!-- Image and text -->
 	<nav class="navbar navbar-dark bg-dark">
-	  	<span class="navbar-brand mb-0 h1"><h1><a href="/">Duplicate Files Remover</a></h1></span>
+	  	<span class="navbar-brand mb-0 h1"><div class="container"><h1><a href="/">Duplicate Files Remover</a></h1></div></span>
 	</nav>
+	<hr>
 	<div class="container">
 		{% block content %}{% endblock %}
 	</div>
