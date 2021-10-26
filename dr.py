@@ -204,10 +204,7 @@ def isDirValid(dirName):
     :return: True if the path is valid else False
     """
 
-    if os.path.isdir(dirName):
-        return True
-    else:
-        return False
+    return os.path.isdir(dirName)
 
 def getReadableFileSizes(size_in_bytes):
     """
